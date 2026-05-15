@@ -1,0 +1,91 @@
+{
+  "name": "quickFire",
+  "displayName": "quickFire",
+  "description": "Trigger actions with a single keystroke",
+  "version": "0.0.1",
+  "publisher": "dani",
+  "engines": {
+    "vscode": "^1.116.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "quickFire.showQuickActions",
+        "title": "QuickFire: Show actions"
+      }
+    ],
+    "configuration": {
+      "title": "QuickFire",
+      "properties": {
+        "quickFire.actions": {
+          "type": "array",
+          "default": [],
+          "description": "Configurable quick actions. Each item should have a 'key', 'description', and either a 'command' or an 'actions' array for a submenu.",
+          "items": {
+            "type": "object",
+            "required": [
+              "key",
+              "description"
+            ],
+            "properties": {
+              "key": {
+                "type": "string",
+                "description": "The key (letter) to trigger the action"
+              },
+              "command": {
+                "type": "string",
+                "description": "The command ID to execute"
+              },
+              "description": {
+                "type": "string",
+                "description": "A brief description of the action"
+              },
+              "args": {
+                "type": [
+                  "string",
+                  "number",
+                  "boolean",
+                  "object",
+                  "array",
+                  "null"
+                ],
+                "description": "Optional arguments to pass to the command."
+              },
+              "actions": {
+                "type": "array",
+                "description": "A list of sub-actions. If this is provided, 'command' is ignored.",
+                "items": {
+                  "$ref": "#/properties/quickFire.actions/items"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "npm run check-types && npm run lint && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "npm run check-types && npm run lint && node esbuild.js --production",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src"
+  },
+  "devDependencies": {
+    "@types/node": "22.x",
+    "@types/vscode": "^1.116.0",
+    "esbuild": "^0.27.3",
+    "eslint": "^9.39.3",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.1"
+  }
+}
