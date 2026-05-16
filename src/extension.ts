@@ -50,13 +50,13 @@ export function activate(context: vscode.ExtensionContext) {
 		const showMenu = (items: QuickActionItem[], title?: string, onBack?: () => void) => {
 			const BACKSPACE_MARKER = '\u200B';
 			const quickPick = vscode.window.createQuickPick<QuickActionItem>();
-			
+
 			// Prepend the marker to all labels so they match the initial value and aren't filtered out
 			quickPick.items = items.map(item => ({
 				...item,
 				label: BACKSPACE_MARKER + item.label
 			}));
-			
+
 			quickPick.placeholder = 'Type a letter to execute an action (Backspace to go back)';
 			quickPick.title = title;
 			quickPick.value = BACKSPACE_MARKER;
@@ -103,7 +103,7 @@ export function activate(context: vscode.ExtensionContext) {
 				}
 
 				const actualInput = value.startsWith(BACKSPACE_MARKER) ? value.slice(BACKSPACE_MARKER.length) : value;
-				
+
 				if (actualInput === '') {
 					return;
 				}
