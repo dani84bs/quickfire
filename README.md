@@ -1,6 +1,6 @@
 # 🚀 QuickFire
 
-**Trigger VS Code commands and workflows with a single keystroke.**
+**Execute VS Code commands and nested workflows instantly with a single keystroke—no Enter required.**
 
 [![Version](https://img.shields.io/visual-studio-marketplace/v/dani84bs.quickfire)](https://marketplace.visualstudio.com/items?itemName=dani84bs.quickfire)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)

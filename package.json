@@ -1,7 +1,7 @@
 {
   "name": "quickfire",
   "displayName": "quickFire",
-  "description": "Trigger actions with a single keystroke",
+  "description": "Execute VS Code commands and nested workflows instantly with a single keystroke—no Enter required.",
   "version": "0.0.1",
   "publisher": "dani84bs",
   "icon": "icon.png",
