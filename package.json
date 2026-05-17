@@ -3,7 +3,7 @@
   "displayName": "quickFire",
   "description": "Trigger actions with a single keystroke",
   "version": "0.0.1",
-  "publisher": "Daniele Trainini",
+  "publisher": "dani84bs",
   "repository": {
     "type": "git",
     "url": "https://github.com/dani84bs/quickfire.git"
@@ -27,7 +27,7 @@
     "configuration": {
       "title": "QuickFire",
       "properties": {
-        "quickFire.actions": {
+        "quickfire.actions": {
           "type": "array",
           "default": [],
           "description": "Configurable quick actions. Each item should have a 'key', 'description', and either a 'command' or an 'actions' array for a submenu.",
@@ -65,7 +65,7 @@
                 "type": "array",
                 "description": "A list of sub-actions. If this is provided, 'command' is ignored.",
                 "items": {
-                  "$ref": "#/properties/quickFire.actions/items"
+                  "$ref": "#/properties/quickfire.actions/items"
                 }
               }
             }

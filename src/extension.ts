@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
-	let quickActionsDisposable = vscode.commands.registerCommand('quickFire.showQuickActions', () => {
+	let quickActionsDisposable = vscode.commands.registerCommand('quickfire.showQuickActions', () => {
 		interface QuickActionItem extends vscode.QuickPickItem {
 			actionId?: string;
 			args?: any;
@@ -18,7 +18,7 @@ export function activate(context: vscode.ExtensionContext) {
 			}));
 		};
 
-		const config = vscode.workspace.getConfiguration('quickFire');
+		const config = vscode.workspace.getConfiguration('quickfire');
 		const userActions = config.get<any[]>('actions', []);
 		const allItems: QuickActionItem[] = mapUserActions(userActions);
 
@@ -108,7 +108,7 @@ export function activate(context: vscode.ExtensionContext) {
 					return;
 				}
 
-				const matchedItem = items.find(item => item.label.toLowerCase() === actualInput.toLowerCase());
+				const matchedItem = items.find(item => item.label === actualInput);
 				if (matchedItem) {
 					executeAction(matchedItem);
 				} else {
