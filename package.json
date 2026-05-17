@@ -75,6 +75,15 @@
       }
     }
   },
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": "limited",
+      "description": "QuickFire executes configured commands. In untrusted workspaces, workspace-level QuickFire actions are disabled for security to prevent malicious code execution.",
+      "restrictedConfigurations": [
+        "quickfire.actions"
+      ]
+    }
+  },
   "scripts": {
     "vscode:prepublish": "npm run package",
     "compile": "npm run check-types && npm run lint && node esbuild.js",
