@@ -4,6 +4,7 @@
   "description": "Trigger actions with a single keystroke",
   "version": "0.0.1",
   "publisher": "dani84bs",
+  "icon": "icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/dani84bs/quickfire.git"
