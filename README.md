@@ -2,7 +2,7 @@
 
 **Trigger VS Code commands and workflows with a single keystroke.**
 
-[![Version](https://img.shields.io/visual-studio-marketplace/v/DanieleTrainini.quickfire)](https://marketplace.visualstudio.com/items?itemName=DanieleTrainini.quickfire)
+[![Version](https://img.shields.io/visual-studio-marketplace/v/dani84bs.quickfire)](https://marketplace.visualstudio.com/items?itemName=dani84bs.quickfire)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 QuickFire allows you to create a customized menu of actions that you can trigger instantly. Unlike the default QuickPick, QuickFire executes the command as soon as you press the assigned key—no `Enter` required.
@@ -19,12 +19,6 @@ QuickFire allows you to create a customized menu of actions that you can trigger
 
 ---
 
-## 🎬 Demo
-
-*(Add a GIF here showing QuickFire in action!)*
-
----
-
 ## 🚀 Getting Started
 
 1.  **Install** the extension from the VS Code Marketplace.
@@ -35,13 +29,13 @@ QuickFire allows you to create a customized menu of actions that you can trigger
 
 ## ⚙️ Configuration
 
-Open your user `settings.json` and add your custom actions to the `quickFire.actions` array.
+Open your user `settings.json` and add your custom actions to the `quickfire.actions` array.
 
 ### Example Configuration
 
 ```json
 {
-  "quickFire.actions": [
+  "quickfire.actions": [
     {
       "key": "f",
       "description": "File operations",
