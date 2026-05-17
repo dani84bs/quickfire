@@ -1,51 +1,11 @@
 import * as vscode from 'vscode';
+import { QuickActionItem, mapUserActions, parseArgs, findMatchingAction } from './core';
 
 export function activate(context: vscode.ExtensionContext) {
 	let quickActionsDisposable = vscode.commands.registerCommand('quickfire.showQuickActions', () => {
-		interface QuickActionItem extends vscode.QuickPickItem {
-			actionId?: string;
-			args?: any;
-			subActions?: QuickActionItem[];
-		}
-
-		const mapUserActions = (actions: any[]): QuickActionItem[] => {
-			return actions.map(action => ({
-				label: action.key,
-				description: action.description,
-				actionId: action.command,
-				args: action.args,
-				subActions: action.actions ? mapUserActions(action.actions) : undefined
-			}));
-		};
-
 		const config = vscode.workspace.getConfiguration('quickfire');
 		const userActions = config.get<any[]>('actions', []);
 		const allItems: QuickActionItem[] = mapUserActions(userActions);
-
-		const parseArgs = (args: any): any => {
-			if (typeof args === 'string') {
-				// Check if it's a URI-like string (e.g., file://, http://, vscode://)
-				if (/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\//.test(args)) {
-					try {
-						return vscode.Uri.parse(args);
-					} catch {
-						return args;
-					}
-				}
-				return args;
-			}
-			if (Array.isArray(args)) {
-				return args.map(parseArgs);
-			}
-			if (args !== null && typeof args === 'object') {
-				const result: any = {};
-				for (const key in args) {
-					result[key] = parseArgs(args[key]);
-				}
-				return result;
-			}
-			return args;
-		};
 
 		const showMenu = (items: QuickActionItem[], title?: string, onBack?: () => void) => {
 			const BACKSPACE_MARKER = '\u200B';
@@ -108,7 +68,7 @@ export function activate(context: vscode.ExtensionContext) {
 					return;
 				}
 
-				const matchedItem = items.find(item => item.label === actualInput);
+				const matchedItem = findMatchingAction(items, actualInput);
 				if (matchedItem) {
 					executeAction(matchedItem);
 				} else {
