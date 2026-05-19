@@ -11,6 +11,9 @@ export interface QuickActionItem extends vscode.QuickPickItem {
  * Converts standard ASCII characters to their Fullwidth Unicode equivalents.
  */
 export const toFullWidth = (str: string): string => {
+	if (str === ' ') {
+		return '␣';
+	}
 	return str.split('').map(char => {
 		const code = char.charCodeAt(0);
 		if (code === 32) { // Space

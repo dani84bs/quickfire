@@ -41,12 +41,15 @@ suite('Core Logic Unit Tests', () => {
 	suite('mapUserActions', () => {
 		test('should map flat actions correctly with fullwidth labels', () => {
 			const input = [
-				{ key: 't', description: 'Terminal', command: 'workbench.action.terminal.toggleTerminal' }
+				{ key: 't', description: 'Terminal', command: 'workbench.action.terminal.toggleTerminal' },
+				{ key: ' ', description: 'Space Action', command: 'some.command' }
 			];
 			const result = mapUserActions(input);
-			assert.strictEqual(result.length, 1);
+			assert.strictEqual(result.length, 2);
 			assert.strictEqual(result[0].label, 'ｔ'); // Fullwidth 't'
 			assert.strictEqual(result[0].originalKey, 't');
+			assert.strictEqual(result[1].label, '␣'); // Visible space
+			assert.strictEqual(result[1].originalKey, ' ');
 			assert.strictEqual(result[0].description, 'Terminal');
 			assert.strictEqual(result[0].actionId, 'workbench.action.terminal.toggleTerminal');
 		});
