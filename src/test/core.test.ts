@@ -39,13 +39,14 @@ suite('Core Logic Unit Tests', () => {
 	});
 
 	suite('mapUserActions', () => {
-		test('should map flat actions correctly', () => {
+		test('should map flat actions correctly with fullwidth labels', () => {
 			const input = [
 				{ key: 't', description: 'Terminal', command: 'workbench.action.terminal.toggleTerminal' }
 			];
 			const result = mapUserActions(input);
 			assert.strictEqual(result.length, 1);
-			assert.strictEqual(result[0].label, 't');
+			assert.strictEqual(result[0].label, 'ｔ'); // Fullwidth 't'
+			assert.strictEqual(result[0].originalKey, 't');
 			assert.strictEqual(result[0].description, 'Terminal');
 			assert.strictEqual(result[0].actionId, 'workbench.action.terminal.toggleTerminal');
 		});
@@ -61,16 +62,18 @@ suite('Core Logic Unit Tests', () => {
 				}
 			];
 			const result = mapUserActions(input);
-			assert.strictEqual(result[0].label, 'f');
+			assert.strictEqual(result[0].label, 'ｆ'); // Fullwidth 'f'
+			assert.strictEqual(result[0].originalKey, 'f');
 			assert.ok(result[0].subActions);
-			assert.strictEqual(result[0].subActions[0].label, 'n');
+			assert.strictEqual(result[0].subActions[0].label, 'ｎ'); // Fullwidth 'n'
+			assert.strictEqual(result[0].subActions[0].originalKey, 'n');
 		});
 	});
 
 	suite('findMatchingAction', () => {
 		const items: QuickActionItem[] = [
-			{ label: 't', description: 'lowercase' },
-			{ label: 'T', description: 'UPPERCASE' }
+			{ label: 'ｔ', originalKey: 't', description: 'lowercase' },
+			{ label: 'Ｔ', originalKey: 'T', description: 'UPPERCASE' }
 		];
 
 		test('should match lowercase exactly', () => {
@@ -86,7 +89,7 @@ suite('Core Logic Unit Tests', () => {
 		});
 
 		test('should not match if case differs', () => {
-			const match = findMatchingAction([{ label: 't' }], 'T');
+			const match = findMatchingAction([{ label: 'ｔ', originalKey: 't' }], 'T');
 			assert.strictEqual(match, undefined);
 		});
 

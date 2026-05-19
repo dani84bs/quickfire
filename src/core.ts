@@ -4,17 +4,35 @@ export interface QuickActionItem extends vscode.QuickPickItem {
 	actionId?: string;
 	args?: any;
 	subActions?: QuickActionItem[];
+	originalKey?: string;
 }
+
+/**
+ * Converts standard ASCII characters to their Fullwidth Unicode equivalents.
+ */
+export const toFullWidth = (str: string): string => {
+	return str.split('').map(char => {
+		const code = char.charCodeAt(0);
+		if (code === 32) { // Space
+			return '\u3000';
+		}
+		if (code >= 33 && code <= 126) { // Printable ASCII
+			return String.fromCharCode(code + 0xFEE0);
+		}
+		return char;
+	}).join('');
+};
 
 /**
  * Recursively maps user action configuration to QuickActionItems.
  */
 export const mapUserActions = (actions: any[]): QuickActionItem[] => {
 	return actions.map(action => ({
-		label: action.key,
+		label: toFullWidth(action.key || ''),
 		description: action.description,
 		actionId: action.command,
 		args: action.args,
+		originalKey: action.key,
 		subActions: action.actions ? mapUserActions(action.actions) : undefined
 	}));
 };
@@ -51,5 +69,5 @@ export const parseArgs = (args: any): any => {
  * Finds an action that strictly matches the input (case-sensitive).
  */
 export const findMatchingAction = (items: QuickActionItem[], input: string): QuickActionItem | undefined => {
-	return items.find(item => item.label === input);
+	return items.find(item => item.originalKey === input);
 };

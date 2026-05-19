@@ -77,9 +77,9 @@ export function activate(context: vscode.ExtensionContext) {
 			});
 
 			quickPick.onDidAccept(() => {
-				const selectedItem = quickPick.selectedItems[0];
+				const selectedItem = quickPick.selectedItems[0] as QuickActionItem;
 				if (selectedItem) {
-					const originalItem = items.find(i => i.label === selectedItem.label.replace(BACKSPACE_MARKER, ''));
+					const originalItem = items.find(i => i.originalKey === selectedItem.originalKey);
 					if (originalItem) {
 						executeAction(originalItem);
 					}
