@@ -2,7 +2,8 @@
 
 **Execute VS Code commands and nested workflows instantly with a single keystroke—no Enter required.**
 
-[![Version](https://img.shields.io/visual-studio-marketplace/v/dani84bs.quickfire)](https://marketplace.visualstudio.com/items?itemName=dani84bs.quickfire)
+[![VS Code Marketplace](https://img.shields.io/visual-studio-marketplace/v/dani84bs.quickfire)](https://marketplace.visualstudio.com/items?itemName=dani84bs.quickfire)
+[![Open VSX Registry](https://img.shields.io/open-vsx/v/dani84bs/quickfire)](https://open-vsx.org/extension/dani84bs/quickfire)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 QuickFire allows you to create a customized menu of actions that you can trigger instantly. Unlike the default QuickPick, QuickFire executes the command as soon as you press the assigned key—no `Enter` required.
@@ -82,6 +83,20 @@ Open your user `settings.json` and add your custom actions to the `quickfire.act
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request or open an issue on [GitHub](https://github.com/dani84bs/quickfire).
+
+---
+
+## 🚀 Publishing to Open VSX
+
+To publish the extension to the Open VSX registry manually, follow these steps:
+
+1. **Log in / Link Eclipse Account**: Log in to [Open VSX Registry](https://open-vsx.org) and connect your GitHub account to your Eclipse account.
+2. **Accept the Publisher Agreement**: Go to your settings page and agree to the publisher agreement.
+3. **Generate an Access Token**: Under **Settings > Access Tokens**, generate a new token.
+4. **Publish**: Run the following command from the root directory of the repository (replace `YOUR_TOKEN_HERE` with your access token, making sure not to save the token in any configuration files):
+   ```bash
+   OVSX_PAT=YOUR_TOKEN_HERE npm run publish:open-vsx
+   ```
 
 ---
 

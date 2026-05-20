@@ -2,7 +2,7 @@
   "name": "quickfire",
   "displayName": "quickFire",
   "description": "Execute VS Code commands and nested workflows instantly with a single keystroke—no Enter required.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "dani84bs",
   "icon": "icon.png",
   "repository": {
@@ -11,7 +11,7 @@
   },
   "license": "MIT",
   "engines": {
-    "vscode": "^1.116.0"
+    "vscode": "^1.107.0"
   },
   "categories": [
     "Other"
@@ -94,12 +94,13 @@
     "check-types": "tsc --noEmit",
     "lint": "eslint src",
     "test-compile": "tsc -p ./",
-    "test": "npm run test-compile && vscode-test"
+    "test": "npm run test-compile && vscode-test",
+    "publish:open-vsx": "npx ovsx publish"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
     "@types/node": "22.x",
-    "@types/vscode": "^1.116.0",
+    "@types/vscode": "^1.107.0",
     "@vscode/test-cli": "^0.0.10",
     "@vscode/test-electron": "^2.4.1",
     "esbuild": "^0.27.3",
