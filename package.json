@@ -9,7 +9,18 @@
     "type": "git",
     "url": "https://github.com/dani84bs/quickfire.git"
   },
+  "bugs": {
+    "url": "https://github.com/dani84bs/quickfire/issues"
+  },
+  "homepage": "https://github.com/dani84bs/quickfire#readme",
   "license": "MIT",
+  "keywords": [
+    "quickpick",
+    "workflow",
+    "keyboard",
+    "shortcuts",
+    "productivity"
+  ],
   "engines": {
     "vscode": "^1.107.0"
   },
